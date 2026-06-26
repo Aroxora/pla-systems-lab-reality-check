@@ -33,6 +33,14 @@ Most findings were fixed in the source repo **after** this audit (commits `1f4da
   3.7 (47-file doc-sprawl) · 5.4 (kill-chain hand-assigned probabilities) · 6.2 (pipeline still paused —
   the churn is fixed but it does no new retrieval).
 
+> **Second remediation pass — June 2026 (in progress).** A parallel effort is now closing several of
+> the still-open items: a **frequency-dependent RAM model + VHF-validity gating** (1.5; the PO-at-VHF
+> issue), a **numeric cross-contradiction guard** over range/CEP/span/diameter/EIRP keyed on the main
+> catalog (2.3 / 2.4), an honest **ship-"height" label** and a **DF-41 mesh scaled to published
+> dimensions** (1.7, 1.8), and **researched OSINT sources** attached to previously-unsourced catalog
+> entries (2.1). This block will be updated to ✅ / 🟡 once those changes land and the project's
+> guards + tests re-verify them — not before.
+
 The findings below are kept **verbatim** as the record; each row describes the *original* problem.
 
 ---
