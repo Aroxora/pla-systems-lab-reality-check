@@ -13,31 +13,35 @@ Severity: **high** = actively misleading if trusted · **medium** = material gap
 
 ## Remediation status — June 2026
 
-Most findings were fixed in the source repo **after** this audit, across two passes (commits
-`1f4da59`, `c9e9c3f`, `fbd2357`, `52a6701`; the project's `make check` guards + **251 tests pass** on
-all of it). Status per finding ID:
+Every *fixable* finding was fixed in the source repo **after** this audit, across three passes
+(commits `1f4da59`, `c9e9c3f`, `fbd2357`, `52a6701`, `8a20ab5`; `make check` green, **251 tests pass**,
+**parity 412/412**). Status per finding ID:
 
-- ✅ **Fixed:** 1.3 (pinwheel fins, 12 meshes regenerated) · 1.4 / 1.6 / 5.1 / 5.2 (RCS: realistic
-  OSINT estimate is the authoritative `rcs_absolute`, detection re-anchored, bare PO flagged
-  shaping-only, Type-055 override) · **1.5 (RAM now frequency-dependent — full at X-band, ~15%
-  effective at VHF)** · **5.3 (PO-validity gating: every RCS carries `po_valid`/`po_regime`, confidence
-  capped outside the optical regime)** · **1.8 (DF-41 mesh rescaled to the published ~21 × 2.25 m)** ·
-  2.2 (dedup 110→102 + duplicate-id guard) · **2.3 / 2.4 (new rule #7: numeric cross-contradiction
-  guard over range/CEP/length/diameter/span/height/speed/EIRP, keyed on the 102-system catalog)** ·
-  2.6 (AJX-002 → XLUUV) · 3.1 / 3.2 / 3.3 / 3.4 / 3.5 / 3.6 / 3.8 (overclaim & fabricated-hardware docs
-  retracted, URL fixed) · 4.2 (parity docstring) · 5.5 (home-page counts) · 6.1 / 6.3 / 6.4 / 6.5
-  (research churn guard, source-tier gate, Firestore-lie, rumor flagged).
+- ✅ **Fixed:** 1.3 (pinwheel fins) · 1.4 / 1.6 / 5.1 / 5.2 (RCS: OSINT estimate is the authoritative
+  `rcs_absolute`, detection re-anchored, bare PO shaping-only, Type-055 override) · 1.5 (RAM now
+  frequency-dependent — full at X-band, ~15% at VHF) · 5.3 (PO-validity gating: `po_valid`/`po_regime`,
+  confidence capped outside the optical regime) · 1.8 (DF-41 rescaled to ~21 × 2.25 m) · 1.7 (ship
+  "height" labelled a keel-to-masthead bounding-box extent, not a draft) · 2.2 (dedup 110→102 +
+  duplicate-id guard) · 2.3 / 2.4 (rule #7 numeric cross-contradiction guard — and the 3 spec-vs-mesh
+  drifts it surfaced are now **reconciled**: PL-17 6.0 m, KJ-700 36 m, HQ-26 8.5 m est., all sourced) ·
+  2.5 (fabrication denylist → shared module + conservative heuristic detector) · 2.6 (AJX-002 → XLUUV) ·
+  3.1 / 3.2 / 3.3 / 3.4 / 3.5 / 3.6 / 3.8 (overclaim & fabricated-hardware docs) · 3.7 (doc-sprawl →
+  `DOCS_INDEX.md` + superseded banners) · 4.2 (parity docstring) · 4.3 (parity coverage 343→412 cases;
+  every function now ≥2 input points) · 5.5 (home-page counts) · 6.1 / 6.3 / 6.4 / 6.5 (research churn
+  guard, source-tier gate, Firestore-lie, rumor flagged).
 - ✅ **Documented** (honest caveat shipped in methodology): 4.1, 4.4, 4.5.
-- 🟡 **Mitigated / honestly labelled** — the underlying limit is *inherent* (classified geometry and
-  real LO signatures can't be computed), so the fix is truthful labelling: 1.1 / 1.2 / 1.9 (meshes are
-  parametric reconstructions, now labelled as such — "high-fidelity" softened — not "validated CAD") ·
-  **1.7 (ship "height" now flagged a keel-to-masthead bounding-box extent, not a published draft)** ·
-  **2.1 (provenance flag + 40 web-researched OSINT citations merged — sourced 30 → 70 / 102)** ·
-  4.3 / 5.6 (documented, coverage/wording not expanded).
-- ⚪ **Still open:** 2.5 (hard-coded fabrication denylist) · 3.7 (47-file doc-sprawl) · 5.4 (kill-chain
-  hand-assigned probabilities) · 6.2 (pipeline still paused — churn fixed, no new retrieval) · plus
-  **3 spec-vs-mesh dimension drifts now SURFACED by the new rule #7 (HQ-26, KJ-700, PL-17), awaiting
-  reconciliation** — previously invisible, now caught by the guard.
+- 🟡 **Mitigated / honestly labelled** — the fix is truthful labelling: 1.1 / 1.2 / 1.9 (meshes are
+  parametric reconstructions, "high-fidelity" softened, not "validated CAD") · 2.1 (provenance flag +
+  40 web-researched OSINT citations — sourced 30 → 70 / 102; the remaining ~32 are next-gen/parade
+  systems with **no authoritative public spec** to cite) · 5.6.
+- ⛔ **Inherent — cannot be "fixed," only labelled** (limits of open-source + closed-form analysis, not
+  bugs): a *truly accurate* engineering-CAD geometry and a *real* low-observable absolute RCS (cat 1 &
+  2) need classified mold-line/RAM data and a full-wave EM solver; the closed-form radar/RF models
+  omitting clutter/multipath/ECM/latency/human factors (cat 5) would require a different
+  full-fidelity simulator; the kill-chain per-stage probabilities (5.4) are OSINT estimates with no
+  ground truth to compute from. All now honestly surfaced rather than dressed up.
+- ⚙️ **By choice, not a defect:** 6.2 — the research pipeline is *paused* (the churn defect is fixed);
+  reviving live retrieval is an operational decision, not a remaining bug.
 
 The findings below are kept **verbatim** as the record; each row describes the *original* problem.
 
