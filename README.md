@@ -51,9 +51,9 @@ per-finding badges in **[LIMITATIONS.md](LIMITATIONS.md)**):
 
 | Category | Status | What changed |
 |---|---|---|
-| 1 · Geometry not matched to specs | 🟡 **Mitigated** | Pinwheel-fin defect **fixed** (5 sites, 12 meshes regenerated); the "validated STL" overclaim corrected to admit J-20/Type-055 are parametric. Meshes are *still* parametric reconstructions — classified geometry is unrecoverable — but now honestly labelled. DF-41 over-size and ship-"height" wording remain open. |
-| 2 · RCS off by tens of dB | ✅ **Fixed (honestly)** | New `rcs_absolute` makes the realistic OSINT estimate authoritative (J-20 now −13 dBsm, not +19); detection range re-anchored to it (∝ σ^¼); bare Physical-Optics flagged shaping-only; Type-055 override (+83 → +37 dBsm); VHF PO-validity flagged. |
-| 3 · Catalog unciteable | ✅ **Fixed** | Deduped 110 → 102 (8 contradictory duplicate ids gone); every system tagged `provenance` (sourced vs unsourced); AJX-002 mis-ID corrected (UAV → XLUUV); duplicate-id guard added. Numeric range/CEP/EIRP cross-checks still unguarded. |
+| 1 · Geometry not matched to specs | 🟡 **Mitigated** | Pinwheel-fin defect **fixed** (5 sites, 12 meshes); **DF-41 mesh rescaled to the published ~21 × 2.25 m**; "validated STL"/"high-fidelity" overclaims corrected to admit J-20/Type-055 are parametric; **ship "height" now flagged a keel-to-masthead bounding box, not a draft**. Meshes are *still* parametric reconstructions — classified geometry is unrecoverable — but now defect-free and honestly labelled. |
+| 2 · RCS off by tens of dB | ✅ **Fixed (honestly)** | `rcs_absolute` makes the realistic OSINT estimate authoritative (J-20 now −13 dBsm, not +19); detection re-anchored (∝ σ^¼); bare Physical-Optics flagged shaping-only; Type-055 override (+83 → +37 dBsm). **RAM is now frequency-dependent** (full at X-band, ~15% at VHF) and **PO carries a validity flag** (`po_valid`/`po_regime`, confidence capped outside the optical regime). |
+| 3 · Catalog unciteable | ✅ **Fixed** | Deduped 110 → 102; every system tagged `provenance`; AJX-002 mis-ID corrected (UAV → XLUUV); duplicate-id guard. **New rule #7 guards numeric cross-contradictions** (range/CEP/length/diameter/span/height/speed/EIRP) keyed on the catalog — and already surfaced 3 spec-vs-mesh drifts. **40 web-researched OSINT citations merged: sourced 30 → 70 / 102.** |
 | 4 · Overclaim / fabricated docs | ✅ **Fixed** | Nonexistent `hardware_compatibility_test.py` harness + fabricated "measured" results + "OPERATIONAL" CPU matrix removed; broken issue URL fixed. (47-file doc-sprawl not consolidated.) |
 | 5 · "Parity ≠ correctness" | ✅ **Documented** | `export_parity` docstring corrected; a methodology `caveats` block now states parity proves *site = toolkit*, not *toolkit = reality*; that models omit clutter/multipath/ECM; and that 43/114 functions have a single parity test point. |
 | 6 · Dead research pipeline | 🟡 **Mostly fixed** | Content-hash churn guard (no more byte-identical commits); Firestore-lie corrected; real source-tier gate; J-10C rumor flagged UNCONFIRMED. The pipeline itself stays paused (does no new retrieval). |
@@ -169,7 +169,7 @@ Ordered by how badly they can mislead. Each is cited in **[LIMITATIONS.md](LIMIT
 | Read the 2025 DoD PRC report in a navigable form | **Yes** — a decent reading/reference shell. |
 | Get real RCS signatures or detection ranges | **No** — still geometry-derived; but (June 2026) the site now surfaces the realistic OSINT estimate as the authoritative number and flags the Physical-Optics figure as shaping-only. |
 | Use the 3-D models as accurate geometry | **No** — still parametric reconstructions (now labelled as such, and defect-free after the pinwheel-fin fix), not engineering CAD. |
-| Cite the catalog as an order-of-battle reference | **With care** — the duplicates/contradictions are gone and every entry now carries a sourced/unsourced **provenance** flag; treat unsourced entries as open-source estimates. |
+| Cite the catalog as an order-of-battle reference | **With care** — duplicates/contradictions gone, a numeric cross-contradiction guard now runs, **70 of 102 entries carry a researched source** and the rest are flagged unsourced; treat unsourced entries as open-source estimates. |
 
 ## How this was produced
 
