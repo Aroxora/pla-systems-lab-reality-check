@@ -34,12 +34,25 @@ Every *fixable* finding was fixed in the source repo **after** this audit, acros
   parametric reconstructions, "high-fidelity" softened, not "validated CAD") · 2.1 (provenance flag +
   40 web-researched OSINT citations — sourced 30 → 70 / 102; the remaining ~32 are next-gen/parade
   systems with **no authoritative public spec** to cite) · 5.6.
-- ⛔ **Inherent — cannot be "fixed," only labelled** (limits of open-source + closed-form analysis, not
-  bugs): a *truly accurate* engineering-CAD geometry and a *real* low-observable absolute RCS (cat 1 &
-  2) need classified mold-line/RAM data and a full-wave EM solver; the closed-form radar/RF models
-  omitting clutter/multipath/ECM/latency/human factors (cat 5) would require a different
-  full-fidelity simulator; the kill-chain per-stage probabilities (5.4) are OSINT estimates with no
-  ground truth to compute from. All now honestly surfaced rather than dressed up.
+- 🔬 **Pushed as far as open-data physics allows** (4th pass, commit `f53d98c`) — several "inherent"
+  items were made *more physically real*, each honestly bounded, none faked:
+  - **RCS** — Physical Optics now adds **first-order edge diffraction (PTD / equivalent edge currents)**
+    and a **transmission-line Salisbury-screen RAM model** (frequency-dependent reflection with a
+    resonant null) — the actual unclassified RCS-prediction method (POFACETS-class). Improves the
+    *shaping/aspect* fidelity; the absolute LO value still needs the classified coating, so it stays
+    OSINT-anchored.
+  - **Kill-chain** — terminal-hit probability is now **derived** from the circular-coverage (Rayleigh)
+    damage function (P = 1 − exp(−R²/2σ²), σ = CEP/1.1774) instead of a hand-set 0.70, with a
+    **Monte-Carlo sensitivity** (P10/P50/P90 + dominant-uncertainty tornado) so the headline is an
+    honest distribution.
+  - **Detection** — added the previously-omitted closed-form terms: **two-way atmospheric absorption,
+    surface clutter (clutter-limited range), and two-ray multipath** (5 new functions; parity 412 → 432).
+- ⛔ **Genuinely impossible — and cloud compute can't change it (a *data* wall, not a *compute* wall):**
+  a *truly accurate* absolute LO RCS or engineering-CAD geometry needs the **classified mold-line and
+  RAM material stack-up**; a full-wave EM solver on a cloud GPU still has nothing real to ingest, and
+  fabricating those inputs would be the exact dishonesty this repo exists to flag. The kill-chain
+  per-stage probabilities (5.4) and full ECM/human-factors fidelity (cat 5) likewise need
+  intelligence-grade data or a different class of simulator. These stay honestly labelled.
 - ⚙️ **By choice, not a defect:** 6.2 — the research pipeline is *paused* (the churn defect is fixed);
   reviving live retrieval is an operational decision, not a remaining bug.
 

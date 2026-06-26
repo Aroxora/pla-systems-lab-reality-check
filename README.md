@@ -52,15 +52,18 @@ per-finding badges in **[LIMITATIONS.md](LIMITATIONS.md)**):
 | Category | Status | What changed |
 |---|---|---|
 | 1 · Geometry not matched to specs | 🟡 **Mitigated** | Pinwheel-fin defect **fixed** (5 sites, 12 meshes); **DF-41 mesh rescaled to the published ~21 × 2.25 m**; "validated STL"/"high-fidelity" overclaims corrected to admit J-20/Type-055 are parametric; **ship "height" now flagged a keel-to-masthead bounding box, not a draft**. Meshes are *still* parametric reconstructions — classified geometry is unrecoverable — but now defect-free and honestly labelled. |
-| 2 · RCS off by tens of dB | ✅ **Fixed (honestly)** | `rcs_absolute` makes the realistic OSINT estimate authoritative (J-20 now −13 dBsm, not +19); detection re-anchored (∝ σ^¼); bare Physical-Optics flagged shaping-only; Type-055 override (+83 → +37 dBsm). **RAM is now frequency-dependent** (full at X-band, ~15% at VHF) and **PO carries a validity flag** (`po_valid`/`po_regime`, confidence capped outside the optical regime). |
+| 2 · RCS off by tens of dB | ✅ **Fixed (honestly)** | `rcs_absolute` makes the realistic OSINT estimate authoritative (J-20 now −13 dBsm, not +19); detection re-anchored (∝ σ^¼); bare Physical-Optics flagged shaping-only; Type-055 override (+83 → +37 dBsm). **RAM is now frequency-dependent** (full at X-band, ~15% at VHF) and **PO carries a validity flag** (`po_valid`/`po_regime`). PO now also adds **edge diffraction (PTD)** + a **Salisbury-screen layered-RAM model** — the unclassified RCS-prediction method; absolute LO still needs the classified coating. |
 | 3 · Catalog unciteable | ✅ **Fixed** | Deduped 110 → 102; every system tagged `provenance`; AJX-002 mis-ID corrected (UAV → XLUUV); duplicate-id guard. **New rule #7 guards numeric cross-contradictions** — and the **3 spec-vs-mesh drifts it surfaced are now reconciled** (PL-17/KJ-700/HQ-26, sourced). Fabrication denylist → **shared module + heuristic detector**. **40 web-researched OSINT citations: sourced 30 → 70 / 102.** |
 | 4 · Overclaim / fabricated docs | ✅ **Fixed** | Nonexistent `hardware_compatibility_test.py` harness + fabricated "measured" results + "OPERATIONAL" CPU matrix removed; broken issue URL fixed. **Doc-sprawl now navigable** via `DOCS_INDEX.md` + superseded banners on the near-duplicate hardware docs. |
 | 5 · "Parity ≠ correctness" | ✅ **Documented + coverage raised** | `export_parity` docstring corrected; methodology `caveats` block states parity proves *site = toolkit*, not *toolkit = reality*, and that models omit clutter/multipath/ECM. **Parity coverage raised so every function now has ≥2 test points (343 → 412 cases)**; no Python↔TS divergence found. |
 | 6 · Dead research pipeline | 🟡 **Mostly fixed** | Content-hash churn guard (no more byte-identical commits); Firestore-lie corrected; real source-tier gate; J-10C rumor flagged UNCONFIRMED. The pipeline itself stays paused by choice (does no new retrieval). |
 
-Legend: ✅ fixed/documented · 🟡 mitigated/labelled. The **inherent** limits — engineering-CAD geometry,
-real low-observable RCS, and the omissions of closed-form models — need classified data and a full-wave
-EM/M&S simulator; they **can't be "fixed," only labelled**, and now are. See LIMITATIONS.md for the
+Legend: ✅ fixed/documented · 🟡 mitigated/labelled. Where open-data physics *can* go further it now does
+(PO **+ edge-diffraction + Salisbury-screen RAM**, **CEP-derived** hit probability + Monte-Carlo, and
+**clutter/multipath/atmospheric** detection terms). The truly **inherent** limits — engineering-CAD
+geometry, real low-observable RCS, intel-grade probabilities — need **classified data**, which is a
+**data wall, not a compute wall**: a cloud GPU can't synthesize inputs that don't exist, so they stay
+honestly labelled. See LIMITATIONS.md for the
 inherent vs by-choice split.
 
 ---
