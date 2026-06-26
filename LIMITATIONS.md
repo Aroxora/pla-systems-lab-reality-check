@@ -11,6 +11,32 @@ Severity: **high** = actively misleading if trusted · **medium** = material gap
 
 ---
 
+## Remediation status — June 2026
+
+Most findings were fixed in the source repo **after** this audit (commits `1f4da59`, `c9e9c3f`,
+`fbd2357`; the project's `make check` guards + 251 tests pass on the fixes). Status per finding ID:
+
+- ✅ **Fixed:** 1.3 (pinwheel fins, 12 meshes regenerated) · 1.4 / 1.6 / 5.1 / 5.2 (RCS: realistic
+  OSINT estimate is now the authoritative `rcs_absolute`, detection re-anchored, bare PO flagged
+  shaping-only, Type-055 override) · 2.2 (dedup 110→102 + duplicate-id guard) · 2.6 (AJX-002 → XLUUV) ·
+  3.1 / 3.2 / 3.3 / 3.4 / 3.5 / 3.6 / 3.8 (overclaim & fabricated-hardware docs retracted, URL fixed) ·
+  4.2 (parity docstring) · 5.5 (home-page counts) · 6.1 / 6.3 / 6.4 / 6.5 (research churn guard,
+  source-tier gate, Firestore-lie, rumor flagged).
+- ✅ **Documented** (honest caveat now shipped in methodology): 4.1, 4.4, 4.5.
+- 🟡 **Mitigated / honestly labelled** — the underlying limit is *inherent* (classified geometry and
+  real LO signatures can't be computed), so the fix is truthful labelling: 1.1 / 1.2 / 1.9 (meshes are
+  parametric reconstructions, now labelled as such rather than "validated CAD") · 2.1 (every system now
+  carries a `provenance` flag: sourced vs unsourced) · 4.3 / 5.3 / 5.6 (documented, coverage/wording
+  not expanded).
+- ⚪ **Still open:** 1.5 (scalar RAM) · 1.7 (ship "height" bounding box) · 1.8 (DF-41 over-size) ·
+  2.3 / 2.4 (range/CEP/EIRP cross-checks still unguarded) · 2.5 (hard-coded fabrication denylist) ·
+  3.7 (47-file doc-sprawl) · 5.4 (kill-chain hand-assigned probabilities) · 6.2 (pipeline still paused —
+  the churn is fixed but it does no new retrieval).
+
+The findings below are kept **verbatim** as the record; each row describes the *original* problem.
+
+---
+
 ## 1 · CAD geometry fidelity vs real specifications
 
 | # | Sev | Finding | Evidence |

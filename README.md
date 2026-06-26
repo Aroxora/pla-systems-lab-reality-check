@@ -14,9 +14,19 @@ is simple:
 > not matched to real specifications — they are parametric reconstructions and geometry-only
 > illustrations, wrong by tens of decibels for the platforms that matter most.**
 
+> **Update — June 2026: most of this has since been remediated** in the source repo (commits
+> `1f4da59`, `c9e9c3f`, `fbd2357`; the project's `make check` guards + 251 tests pass on the fixes).
+> The pinwheel-mesh defect is gone, the catalog duplicates are deduped, the fabricated-hardware docs
+> are retracted, and the **realistic OSINT RCS estimates are now the authoritative numbers** with the
+> geometry-only Physical-Optics figures explicitly flagged shaping-only. What *cannot* be fixed —
+> classified mold-line geometry and real low-observable signatures — is now **honestly labelled**
+> rather than dressed up. See [Remediation status](#remediation-status--june-2026) below and the
+> per-finding status badges in [LIMITATIONS.md](LIMITATIONS.md).
+
 Every claim below was produced by a multi-agent audit of the source repo and **adversarially
 re-verified** before publication (see [How this was produced](#how-this-was-produced)). The
-full, categorized findings with evidence live in **[LIMITATIONS.md](LIMITATIONS.md)**.
+full, categorized findings with evidence — and their current remediation status — live in
+**[LIMITATIONS.md](LIMITATIONS.md)**.
 
 > **UNCLASSIFIED · OSINT · conceptual.** This is commentary on an educational/conceptual tool.
 > Nothing here is operational guidance, targeting data, or affiliated with any government.
@@ -29,8 +39,27 @@ full, categorized findings with evidence live in **[LIMITATIONS.md](LIMITATIONS.
 |---|---|
 | **What it really is** | A genuinely good **teaching / intuition tool** for radar, RCS shaping, EW, link budgets, and kill-chain reasoning, wrapped around a readable rendering of the DoD PRC report. |
 | **What it is *not*** | A credible OSINT **order-of-battle reference**, a source of **real RCS signatures**, or a **detection/engagement predictor**. |
-| **Where it will mislead you** | If you read the 3-D models as accurate geometry, the RCS patterns as real signatures, the detection rings as real ranges, or the catalog specs as uniformly sourced. |
-| **Trust the numbers?** | Trust the **closed-form physics** (it's parity-checked and textbook-correct). Do **not** trust the **absolute RCS, the mesh fidelity, or ~46% of the catalog specs**. |
+| **Where it will mislead you** | If you read the 3-D models as accurate geometry, the geometry-only RCS *shaping* as a real signature, or the catalog as an order of battle. *(June 2026: the headline RCS is now the realistic OSINT estimate, the catalog is deduped + provenance-flagged, and the meshes are labelled parametric — so the data no longer pretends otherwise.)* |
+| **Trust the numbers?** | Trust the **closed-form physics** (parity-checked, textbook-correct). After the June-2026 fixes the **headline RCS is the realistic OSINT estimate** and the catalog is **deduped + provenance-tagged**; the meshes remain **parametric reconstructions** (now labelled as such, not "validated CAD"). |
+
+---
+
+## Remediation status — June 2026
+
+After this audit, the source project fixed most of what it could. Per-category status (detail and
+per-finding badges in **[LIMITATIONS.md](LIMITATIONS.md)**):
+
+| Category | Status | What changed |
+|---|---|---|
+| 1 · Geometry not matched to specs | 🟡 **Mitigated** | Pinwheel-fin defect **fixed** (5 sites, 12 meshes regenerated); the "validated STL" overclaim corrected to admit J-20/Type-055 are parametric. Meshes are *still* parametric reconstructions — classified geometry is unrecoverable — but now honestly labelled. DF-41 over-size and ship-"height" wording remain open. |
+| 2 · RCS off by tens of dB | ✅ **Fixed (honestly)** | New `rcs_absolute` makes the realistic OSINT estimate authoritative (J-20 now −13 dBsm, not +19); detection range re-anchored to it (∝ σ^¼); bare Physical-Optics flagged shaping-only; Type-055 override (+83 → +37 dBsm); VHF PO-validity flagged. |
+| 3 · Catalog unciteable | ✅ **Fixed** | Deduped 110 → 102 (8 contradictory duplicate ids gone); every system tagged `provenance` (sourced vs unsourced); AJX-002 mis-ID corrected (UAV → XLUUV); duplicate-id guard added. Numeric range/CEP/EIRP cross-checks still unguarded. |
+| 4 · Overclaim / fabricated docs | ✅ **Fixed** | Nonexistent `hardware_compatibility_test.py` harness + fabricated "measured" results + "OPERATIONAL" CPU matrix removed; broken issue URL fixed. (47-file doc-sprawl not consolidated.) |
+| 5 · "Parity ≠ correctness" | ✅ **Documented** | `export_parity` docstring corrected; a methodology `caveats` block now states parity proves *site = toolkit*, not *toolkit = reality*; that models omit clutter/multipath/ECM; and that 43/114 functions have a single parity test point. |
+| 6 · Dead research pipeline | 🟡 **Mostly fixed** | Content-hash churn guard (no more byte-identical commits); Firestore-lie corrected; real source-tier gate; J-10C rumor flagged UNCONFIRMED. The pipeline itself stays paused (does no new retrieval). |
+
+Legend: ✅ fixed/documented · 🟡 mitigated, residual items open. The **inherent** limits — parametric
+geometry and geometry-derived RCS — can't be "fixed," only labelled; they now are.
 
 ---
 
@@ -138,9 +167,9 @@ Ordered by how badly they can mislead. Each is cited in **[LIMITATIONS.md](LIMIT
 |---|---|
 | Build intuition for radar/RCS/link-budget/kill-chain math | **Yes** — the physics engine is its real strength. |
 | Read the 2025 DoD PRC report in a navigable form | **Yes** — a decent reading/reference shell. |
-| Get real RCS signatures or detection ranges | **No** — geometry-only, off by tens of dB. |
-| Use the 3-D models as accurate geometry | **No** — parametric reconstructions, not CAD. |
-| Cite the catalog as an order-of-battle reference | **No** — ~46% unsourced, with duplicates/contradictions. |
+| Get real RCS signatures or detection ranges | **No** — still geometry-derived; but (June 2026) the site now surfaces the realistic OSINT estimate as the authoritative number and flags the Physical-Optics figure as shaping-only. |
+| Use the 3-D models as accurate geometry | **No** — still parametric reconstructions (now labelled as such, and defect-free after the pinwheel-fin fix), not engineering CAD. |
+| Cite the catalog as an order-of-battle reference | **With care** — the duplicates/contradictions are gone and every entry now carries a sourced/unsourced **provenance** flag; treat unsourced entries as open-source estimates. |
 
 ## How this was produced
 
@@ -153,8 +182,10 @@ nearly all verified as real; **at least one was refuted and dropped** (a claim t
 of code" figure was inflated turned out to be a miscount on the auditor's part, so it was removed
 rather than published). Findings cite `file:line` in the source repo as of June 2026.
 
-This is a **point-in-time snapshot.** The private source repo now runs an automated remediation loop
-that fixes these limitations one at a time, so individual items may already be resolved there.
+This began as a **June-2026 point-in-time snapshot**; **most findings have since been remediated**
+(see [Remediation status](#remediation-status--june-2026)), and the private source repo runs an
+automated loop that keeps fixing residual items. The findings are retained in full, with status
+badges, as the record of what was wrong and what was done about it.
 
 ## Contents
 
