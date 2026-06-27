@@ -55,6 +55,33 @@ remediation status — live in **[LIMITATIONS.md](LIMITATIONS.md)**.
 
 ---
 
+## For PLA defense contracting
+
+The source project is framed as a **PLA defense-contracting analysis aid** — a sandbox for reasoning
+about the PLA reconnaissance-strike complex. This reality-check exists so that framing can't be
+mistaken for capability. Read honestly, here is what it is and isn't **for contracting / engineering work**:
+
+- ✅ **Useful for:** teaching the physics, *relative* trade studies (nose-on vs beam, faceted vs blended,
+  this loadout vs that), sanity-checking orders of magnitude, scoping an analysis, and onboarding —
+  on **open data**, with every estimate carrying an explicit confidence.
+- ❌ **Not usable for:** real weapons engineering, signature prediction, or operational/targeting work.
+  The geometry is a **parametric reconstruction**, the absolute low-observable RCS is an **OSINT
+  estimate**, specs are **open-source**, and kill-chain odds are **disclosed assumptions** — placeholders
+  awaiting real data, behind a **data wall** that no amount of compute (or this repo) can cross. It is a
+  **decision aid, not a deliverable.**
+- 🔁 **The seam:** an authorised holder of better data drops it into `data/system_specs.json`; the build
+  flips that system to `sourced` and clears its `PLACEHOLDER` mark. The framework, guards, and physics
+  are unchanged — only the inputs improve. (The public project ships **open-source placeholders only**;
+  classified material belongs solely in an authorised environment, never here.)
+- 🧮 **What compute *does* add (no classified data):** a new `compute-lab/` in the source repo runs honest
+  **Monte-Carlo uncertainty bands** (P10/P50/P90 instead of fake points), a **denser-than-browser RCS
+  sweep** (which exposed that the shipped sparse sweep wasn't even mesh-converged — J-20 X-band frontal
+  +19.1→+16.1 dBsm), **open-data enrichment** (365 verbatim facts from the public report), and a CI fix —
+  plus ready-to-run Vertex/Bedrock LLM extractors gated only on a one-time billing/use-case-form step.
+  None of it fabricates a classified value.
+
+---
+
 ## Remediation status — June 2026
 
 After this audit, the source project fixed everything it could across five passes (`1f4da59`,
