@@ -80,6 +80,51 @@ The findings below are kept **verbatim** as the record; each row describes the *
 
 ---
 
+## Usefulness pass — June 27, 2026
+
+A separate **8-lens adversarial audit asked a different question** from the accuracy audit above:
+*can an analyst actually sit down and complete real work with this today?* Each candidate was
+re-verified against the running app (Playwright + axe); cosmetic/low-value items were discarded. Six
+confirmed analyst-blockers were fixed (`make check`, build, and the full Playwright sweep all green —
+a11y **0** violations, mobile **0** horizontal overflow):
+
+- **Search → Workbench deep-link was dead for 11 of 75 calculators** (the index dropped em-dash / arrow
+  / numeric-subscript HTML entities) — clicking a calculator landed on an empty "No calculator matches"
+  grid. Now **75/75 resolve**, with a verify-time guard against regression.
+- **The "what can range me at X km" threat tool silently omitted ~17 reach-bearing systems** (every
+  fighter, the B-2, NGAD…) because the reach lookup read only one spec key.
+- **A passive-sonar calculator contradicted its sibling by 200×** and emitted physically impossible
+  300–1,200 km ranges (absorption coefficient 200× too low); aligned + caveated.
+- **Two analysis sections (LPI/EMCON, BVR force-exchange) were unsearchable**; a tablist a11y defect
+  broke screen-reader semantics on all 8 CAD views; a research card overflowed on phones.
+- **36 of 102 catalog systems were geometry-only stubs.** The marquee strike/SAM gaps were filled from
+  **real, cited OSINT** (CSIS Missile Threat, U.S. Army, Arms Control Association…) with full
+  `{nominal, lower, upper, confidence, source, limitation}` provenance — and the genuinely new/obscure
+  systems (DF-61, HQ-20, HQ-11) were **deliberately left unsourced rather than fabricated**. One
+  mis-identification was corrected: *Jinglei JL-1* is the **air-launched** ballistic missile (ALBM,
+  H-6N / CH-AS-X-13), not the 1980s Julang-1 SLBM. The home page's earlier "150+ calculators" overclaim
+  is now the correct **75**.
+
+The project was also **repositioned honestly**: it now declares itself a framework of explicitly-marked
+`PLACEHOLDER` inputs awaiting real data (a prominent in-app banner + a limitations-only README), with a
+documented `data/system_specs.json` plug-in seam — drop sourced values in and the build flips them to
+`sourced`, clearing the placeholder mark.
+
+### Residual shortcomings for *actual* PLA use
+
+Even with these fixes, be clear: this is an **analytical / educational** OSINT artifact — good for
+*learning* the reconnaissance-strike complex and for *relative* comparison, **not** a substitute for
+intelligence-grade data or full-physics simulation. It stays unsuitable for real weapons-engineering or
+operations — **by design, not oversight** — for the inherent reasons already documented: parametric
+(not engineering) geometry, OSINT-*anchored* absolute RCS (the classified mold-line + RAM stack-up is a
+**data wall, not a compute wall**), open-source specs, OSINT-assumption kill-chain probabilities,
+single-radar illustrative detection ranges, and a browser-only delivery surface with no operational
+integration. The honest verdict is unchanged by the usefulness pass: the physics core and the workflow
+are genuinely good for study and relative analysis; the tool does not, and is not meant to, give anyone
+an actual operational or engineering capability for — or against — the PLA.
+
+---
+
 ## 1 · CAD geometry fidelity vs real specifications
 
 | # | Sev | Finding | Status |

@@ -22,6 +22,19 @@ is simple:
 > [Remediation status](#remediation-status--june-2026) and per-finding badges in
 > [LIMITATIONS.md](LIMITATIONS.md).
 
+> **Update — June 27, 2026: repositioned + usefulness pass.** The source project (developed by
+> **[ErosolarAI](https://erosolarai.com)**) now states its own nature up front — an analysis
+> **framework of explicitly-marked `PLACEHOLDER` inputs** (parametric geometry, OSINT RCS, open-source
+> specs, disclosed kill-chain odds) awaiting real data, with a prominent in-app PLACEHOLDER banner and a
+> limitations-only README. A separate **usefulness audit** also fixed six analyst-blockers (dead
+> search→calculator deep-links for 11/75 cards; a threat-reach tool omitting ~17 reach-bearing systems;
+> a 200× sonar contradiction; unsearchable analyses; a tablist a11y defect; a phone overflow) and filled
+> the marquee geometry-only catalog stubs from **cited OSINT** (DF-31, HQ-9C/16C/19/10, HHQ-9C),
+> deliberately leaving the newest systems unsourced and correcting the *Jinglei JL-1* SLBM→ALBM mis-ID.
+> The home page's old "150+ calculators" overclaim is now the correct **75**. Placeholders are built to
+> be replaced (`data/system_specs.json`); the classified-data wall is unchanged. See
+> [LIMITATIONS.md](LIMITATIONS.md#usefulness-pass--june-27-2026).
+
 Every claim below was produced by a multi-agent audit of the source repo and **adversarially
 re-verified** before publication. The full, categorized findings with evidence — and their current
 remediation status — live in **[LIMITATIONS.md](LIMITATIONS.md)**.
@@ -183,6 +196,7 @@ was done about it.
 
 ## License & framing
 
-Commentary and assessment © 2026 Bo Shang, under **GNU AGPL-3.0-only**. Not an official DoD product;
-not affiliated with any government or military organization. The point of this repo is **deflationary
-honesty** — to make clear what the source tool is and is not.
+The source project is **developed by [ErosolarAI](https://erosolarai.com)**. Commentary and assessment
+© 2026 ErosolarAI, under **GNU AGPL-3.0-only**. Not an official DoD product; not affiliated with any
+government or military organization. The point of this repo is **deflationary honesty** — to make clear
+what the source tool is and is not.
