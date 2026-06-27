@@ -196,13 +196,17 @@ that don't exist. The source project now honestly labels every such figure rathe
 
 ## Bottom line
 
-| If you want to… | …should you use the source project? |
-|---|---|
-| Build intuition for radar/RCS/link-budget/kill-chain math | **Yes** — the physics engine is its real strength. |
-| Read the 2025 DoD PRC report in a navigable form | **Yes** — a decent reading/reference shell. |
-| Get real RCS signatures or detection ranges | **No** — still geometry-derived; but the site now surfaces the realistic OSINT estimate as authoritative and flags the Physical-Optics figure as shaping-only. |
-| Use the 3-D models as accurate geometry | **No** — still parametric reconstructions (now labelled as such, and defect-free after the pinwheel-fin fix), not engineering CAD. |
-| Cite the catalog as an order-of-battle reference | **With care** — 0 duplicates, 0 bare scalars, a numeric cross-contradiction guard runs, every entry has provenance; treat entries as open-source estimates. |
+We asked the obvious follow-up — *can the "No" rows be fixed with cloud or local compute?* — and
+acted on it (see the source repo's `compute-lab/`). The honest split: what's a **numerical** limit
+compute can improve, vs. what's a **data wall** no compute can cross. Each row now says which.
+
+| If you want to… | …should you use the source project? | Can compute fix it? |
+|---|---|---|
+| Build intuition for radar/RCS/link-budget/kill-chain math | **Yes** — the physics engine is its real strength. | Already the strength. |
+| Read the 2025 DoD PRC report in a navigable form | **Yes** — a decent reading/reference shell. | Enriched: `compute-lab/` mined **365** verbatim quantitative facts from the public report. |
+| Get real RCS signatures or detection ranges | **No** — geometry-derived; the site surfaces the realistic OSINT estimate as authoritative and flags the Physical-Optics figure shaping-only. | **Partly — the honest part.** `compute-lab/` adds Monte-Carlo **P10/P50/P90 bands** (not fake points) and a **mesh-converged** denser sweep — which exposed the shipped sparse sweep wasn't even numerically converged (J-20 X-band frontal +19.1→+16.1 dBsm). **The absolute realness can't be fixed:** it needs the classified mold-line + RAM ε(f)/μ(f). Data wall. |
+| Use the 3-D models as accurate geometry | **No** — parametric reconstructions (labelled as such, defect-free after the pinwheel-fin fix), not engineering CAD. | **No (data wall).** Principal *dimensions* are reconciled to open published figures, but the mm-scale surface geometry that drives the signature is classified and unrecoverable from OSINT. Explained above under *Not fixable*. |
+| Cite the catalog as an order-of-battle reference | **With care** — 0 duplicates, 0 bare scalars, a numeric cross-contradiction guard runs, every entry has provenance; treat entries as open-source estimates. | **Yes, incrementally.** This pass sourced 7 more marquee systems from cited OSINT and fixed the *Jinglei JL-1* mis-ID; the 365 open-report facts give more entries report-page provenance. The remaining gaps are next-gen systems with **no authoritative public spec** to cite — deliberately left blank, not faked. |
 
 ## How this was produced
 
